@@ -18,7 +18,7 @@ jobs:
       - name: Unpack source and anatomical models
         run: |
           unzip -oq source.zip
-          for archive in models-*.zip; do unzip -oq "$archive"; done
+          if [ -f models-optimized.zip ]; then unzip -oq models-optimized.zip; else for archive in models-*.zip; do unzip -oq "$archive"; done; fi
       - uses: actions/setup-node@v4
         with:
           node-version: 22
